@@ -1,6 +1,3 @@
-
-# License
-
 The MIT License
 
 Copyright &copy; 2017, [Ian Storm Taylor](https://ianstormtaylor.com)
