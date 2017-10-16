@@ -29,7 +29,7 @@ function onKeyDown(e) {
 }
 ```
 
-Or, you can curry the hotkey string for better performance...
+Or, you can curry the hotkey string for better performance, since it is only parsed once...
 
 ```js
 import isHotkey from 'is-hotkey'
@@ -53,9 +53,9 @@ There are tons of hotkey libraries, but they're often coupled to the view layer,
 
 Instead, you want to just check whether a single event matches a hotkey. And you want to define your hotkeys in the standard-but-non-trivial-to-parse syntax that everyone knows.
 
-But most libraries don't expose their parsing logic. And even for the ones that do expose their hotkey parsing logic, pulling in an entire library just to parse a hotkey is overkill.
+But most libraries don't expose their parsing logic. And even for the ones that do expose their hotkey parsing logic, pulling in an entire library just to check a hotkey string is overkill.
 
-So... this is a super-simple hotkey checker!
+So... this is a simple and lightweight hotkey checker!
 
 ---
 
@@ -78,7 +78,7 @@ itHotkey('Meta+DownArrow')
 itHotkey('cmd+down')
 ```
 
-The hotkey string is compared to the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API in a case-insentive way, and with all of the conveniences you'd expect, like `cmd` instead of `Command` or `opt` instead of `Alt`. 
+The hotkey string is compared to the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API in a case-insentive way, and with all of the conveniences you'd expect—`cmd` vs. `Meta`, `opt` vs. `Alt`, `down` vs. `DownArrow`, etc. 
 
 It also accepts `mod` for the classic "`cmd` on Mac, `ctrl` on Windows" use case.
 
