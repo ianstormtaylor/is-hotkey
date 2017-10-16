@@ -105,22 +105,21 @@ function parseHotkey(hotkey) {
       value = CONVENIENCE[value]
     }
 
-    const isModifier = value in MODIFIERS
-
-    if (isModifier) {
+    if (values.length == 1) {
+      ret.key = value
+    } else if (value in MODIFIERS) {
       const key = MODIFIERS[value]
       ret[key] = true
     }
-
-    if (!isModifier || values.length == 1) {
-      ret.key = value
-    }
   }
 
-  // Ensure that any modifier that isn't explicitly set is set to `false`.
-  for (const k in MODIFIERS) {
-    const key = MODIFIERS[k]
-    if (!(key in ret)) ret[key] = false
+  // Ensure that any modifier that isn't explicitly set is set to `false`,
+  // unless the hotkey is only matching a single key.
+  if (values.length != 1) {
+    for (const k in MODIFIERS) {
+      const key = MODIFIERS[k]
+      if (!(key in ret)) ret[key] = false
+    }
   }
 
   return ret

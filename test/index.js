@@ -104,6 +104,30 @@ describe('is-hotkey', () => {
     assert.equal(value, true)
   })
 
+  it('matches individual keys', () => {
+    const value = isHotkey('a', {
+      key: 'a',
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: false,
+    })
+
+    assert.equal(value, true)
+  })
+
+  it('matches individual keys, ignoring modifiers', () => {
+    const value = isHotkey('a', {
+      key: 'A',
+      altKey: false,
+      ctrlKey: false,
+      metaKey: false,
+      shiftKey: true,
+    })
+
+    assert.equal(value, true)
+  })
+
   it('does not match extra modifiers', () => {
     const value = isHotkey('cmd+s', {
       key: 'S',
