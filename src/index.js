@@ -91,10 +91,16 @@ function parseHotkey(hotkey) {
   hotkey = hotkey.replace('++', '+add')
 
   const values = hotkey.split('+')
+  const { length } = values
   const ret = {}
 
+  // Ensure that any modifier that isn't explicitly set is set to `false`.
+  for (const k in MODIFIERS) {
+    const m = MODIFIERS[k]
+    ret[m] = false
+  }
+
   for (let value of values) {
-    let key
     value = value.toLowerCase()
 
     if (value == 'mod') {
@@ -105,20 +111,20 @@ function parseHotkey(hotkey) {
       value = CONVENIENCE[value]
     }
 
-    if (values.length == 1) {
-      ret.key = value
-    } else if (value in MODIFIERS) {
-      const key = MODIFIERS[value]
-      ret[key] = true
-    }
-  }
+    const m = MODIFIERS[value]
 
-  // Ensure that any modifier that isn't explicitly set is set to `false`,
-  // unless the hotkey is only matching a single key.
-  if (values.length != 1) {
-    for (const k in MODIFIERS) {
-      const key = MODIFIERS[k]
-      if (!(key in ret)) ret[key] = false
+    if (length == 1 || !m) {
+      ret.key = value
+    }
+
+    if (m) {
+      ret[m] = true
+    }
+
+    // If there's only one key, and it's not a modifier, ignore the shift key
+    // because it will already be taken into accout by the `event.key` value.
+    if (length == 1 && !m) {
+      ret.shiftKey = null
     }
   }
 
@@ -137,7 +143,7 @@ function compareHotkey(object, event) {
   for (const key in object) {
     const actual = key == 'key' ? event.key.toLowerCase() : event[key]
     const expected = object[key]
-    if (actual != expected) return false
+    if (expected != null && actual != expected) return false
   }
 
   return true

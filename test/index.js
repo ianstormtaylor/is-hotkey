@@ -116,7 +116,7 @@ describe('is-hotkey', () => {
     assert.equal(value, true)
   })
 
-  it('matches individual keys, ignoring modifiers', () => {
+  it('matches individual keys, ignoring `shiftKey`', () => {
     const value = isHotkey('a', {
       key: 'A',
       altKey: false,
@@ -134,6 +134,18 @@ describe('is-hotkey', () => {
       altKey: true,
       ctrlKey: false,
       metaKey: true,
+      shiftKey: false,
+    })
+
+    assert.equal(value, false)
+  })
+
+  it('does not match extra modifiers with individual keys', () => {
+    const value = isHotkey('a', {
+      key: 'a',
+      altKey: false,
+      ctrlKey: true,
+      metaKey: false,
       shiftKey: false,
     })
 
