@@ -5,8 +5,6 @@
 
 const IS_MAC = (
   typeof window != 'undefined' &&
-  window.navigator &&
-  window.navigator.platform &&
   /Mac|iPod|iPhone|iPad/.test(window.navigator.platform)
 )
 

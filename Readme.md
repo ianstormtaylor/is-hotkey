@@ -91,7 +91,10 @@ By default the hotkey string is checked using `event.which`. But you can also pa
 import { toKeyName, toKeyCode } from 'is-hotkey'
 
 toKeyName('cmd') // "meta"
+toKeyName('a') // "a"
+
 toKeyCode('shift') // 16
+toKeyCode('a') // 65
 ```
 
 You can also use the exposed `toKeyName` and `toKeyCode` helpers, in case you want to add the same level of convenience to your own APIs.
