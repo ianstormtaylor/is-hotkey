@@ -21,13 +21,18 @@
     "np": "^2.13.1"
   },
   "keywords": [
+    "code",
     "combo",
     "event",
     "hotkey",
     "key",
+    "keycode",
+    "keycodes",
     "keycombo",
     "keydown",
     "keyup",
-    "shortcut"
+    "mousetrap",
+    "shortcut",
+    "which"
   ]
 }

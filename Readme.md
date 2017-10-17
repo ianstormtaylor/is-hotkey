@@ -8,10 +8,10 @@ A simple way to check whether a browser event matches a hotkey.
 ### Features
 
 - Uses a simple, natural syntax for expressing hotkeys—`mod+s`, `cmd+alt+space`, etc.
-- Uses the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API, so it works regardless of keyboard layout.
 - Accepts `mod` for the classic "`cmd` on Mac, `ctrl` on Windows" use case.
+- Can use either `event.which` (default) or `event.key` to work regardless of keyboard layout.
 - Can be curried to reduce parsing and increase performance when needed.
-- Is extremely lightweight, weighing in at `~600 bytes` minified and gzipped.
+- Is very lightweight, weighing in at `1KB` minified and gzipped.
 
 ---
 
@@ -64,11 +64,14 @@ So... this is a simple and lightweight hotkey checker!
 ```js
 import isHotkey from 'is-hotkey'
 
-isHotkey('mod+s', event)
 isHotkey('mod+s')(event)
+isHotkey('mod+s', { byKey: true })(event)
+
+isHotkey('mod+s', event)
+isHotkey('mod+s', { byKey: true }, event)
 ```
 
-You can either pass `hotkey, event` in which case the hotkey will be parsed and compared immediately. Or you can passed just `hotkey` to receive a curried checking function that you can re-use for multiple events.
+You can either pass `hotkey, [options], event` in which case the hotkey will be parsed and compared immediately. Or you can passed just `hotkey, [options]` to receive a curried checking function that you can re-use for multiple events.
 
 ```js
 isHotkey('mod+a')
@@ -78,9 +81,11 @@ itHotkey('Meta+DownArrow')
 itHotkey('cmd+down')
 ```
 
-The hotkey string is compared to the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API in a case-insentive way, and with all of the conveniences you'd expect—`cmd` vs. `Meta`, `opt` vs. `Alt`, `down` vs. `DownArrow`, etc. 
+The API is case-insentive, and has all of the conveniences you'd expect—`cmd` vs. `Meta`, `opt` vs. `Alt`, `down` vs. `DownArrow`, etc. 
 
 It also accepts `mod` for the classic "`cmd` on Mac, `ctrl` on Windows" use case.
+
+By default the hotkey string is checked using `event.which`. But you can also pass in `byKey: true` to compare using the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API, which stays the same regardless of keyboard layout.
 
 ```js
 import { parseHotkey, compareHotkey } from 'is-hotkey'
@@ -90,6 +95,15 @@ const passes = compareHotkey(hotkey, event)
 ```
 
 You can also go even more low-level with the exposed `parseHotkey` and `compareHotkey` functions, which are what the default `isHotkey` export uses under the covers, in case you have more advanced needs.
+
+```js
+import { toKeyName, toKeyCode } from 'is-hotkey'
+
+toKeyName('cmd') // "meta"
+toKeyCode('shift') // 16
+```
+
+You can also use the exposed `toKeyName` and `toKeyCode` helpers, in case you want to add the same level of convenience to your own APIs.
 
 ---
 
