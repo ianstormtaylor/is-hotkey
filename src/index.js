@@ -98,6 +98,14 @@ function isHotkey(hotkey, options, event) {
   return ret
 }
 
+function isCodeHotkey(hotkey, event) {
+  return isHotkey(hotkey, event)
+}
+
+function isKeyHotkey(hotkey, event) {
+  return isHotkey(hotkey, { byKey: true }, event)
+}
+
 /**
  * Parse.
  */
@@ -191,6 +199,8 @@ export default isHotkey
 
 export {
   isHotkey,
+  isCodeHotkey,
+  isKeyHotkey,
   parseHotkey,
   compareHotkey,
   toKeyCode,

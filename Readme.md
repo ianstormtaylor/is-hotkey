@@ -85,7 +85,20 @@ The API is case-insentive, and has all of the conveniences you'd expect—`cmd` 
 
 It also accepts `mod` for the classic "`cmd` on Mac, `ctrl` on Windows" use case.
 
+```js
+import isHotkey from 'is-hotkey'
+import { isCodeHotkey, isKeyHotkey } from 'is-hotkey'
+
+isHotkey('mod+s')(event)
+isHotkey('mod+s', { byKey: true })(event)
+
+isCodeHotkey('mod+s', event)
+isKeyHotkey('mod+s', event)
+```
+
 By default the hotkey string is checked using `event.which`. But you can also pass in `byKey: true` to compare using the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API, which stays the same regardless of keyboard layout.
+
+Or to reduce the noise if you are defining lots of hotkeys, you can use the `isCodeHotkey` and `isKeyHotkey` helpers that are exported.
 
 ```js
 import { toKeyName, toKeyCode } from 'is-hotkey'
