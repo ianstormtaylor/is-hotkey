@@ -76,7 +76,7 @@ You can either pass `hotkey, [options], event` in which case the hotkey will be 
 ```js
 isHotkey('mod+a')
 isHotkey('Control+S')
-isHotkey('⌘+d')
+isHotkey('cmd+opt+d')
 itHotkey('Meta+DownArrow')
 itHotkey('cmd+down')
 ```
