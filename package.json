@@ -5,6 +5,7 @@
   "license": "MIT",
   "repository": "git://github.com/ianstormtaylor/is-hotkey.git",
   "main": "./lib/index.js",
+  "types": "./src/index.d.ts",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
     "clean": "rm -rf ./lib ./node_modules",
