@@ -102,6 +102,12 @@ describe('is-hotkey', () => {
       const value = curried(event)
       assert.equal(value, true)
     })
+
+    it('matches mocked event', () => {
+      const event = { which: 13 }
+      const value = isHotkey('enter', event)
+      assert.equal(value, true)
+    })
   })
 
   describe('byKey', () => {
@@ -181,6 +187,12 @@ describe('is-hotkey', () => {
       const event = e('s', 'meta')
       const curried = isHotkey('cmd+s', { byKey: true })
       const value = curried(event)
+      assert.equal(value, true)
+    })
+
+    it('matches mocked event', () => {
+      const event = { key: 'Enter' }
+      const value = isHotkey('enter', { byKey: true }, event)
       assert.equal(value, true)
     })
   })
