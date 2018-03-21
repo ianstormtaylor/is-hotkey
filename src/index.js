@@ -169,6 +169,7 @@ function compareHotkey(object, event) {
       actual = event[key]
     }
 
+    if (actual == null && expected == false) continue
     if (actual != expected) return false
   }
 
