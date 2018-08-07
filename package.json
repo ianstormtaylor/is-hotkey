@@ -16,8 +16,7 @@
   "devDependencies": {
     "babel-cli": "^6.10.1",
     "babel-preset-env": "^1.6.1",
-    "mocha": "^3.2.0",
-    "np": "^2.13.1"
+    "mocha": "^3.2.0"
   },
   "keywords": [
     "code",
