@@ -90,11 +90,13 @@ function isHotkey(hotkey, options, event) {
     options = null
   }
 
-  const object = parseHotkey(hotkey, options)
-  const ret = event == null
-    ? e => compareHotkey(object, e)
-    : compareHotkey(object, event)
+  if (!Array.isArray(hotkey)) {
+    hotkey = [hotkey]
+  }
 
+  const array = hotkey.map(string => parseHotkey(string, options))
+  const check = e => array.some(object => compareHotkey(object, e))
+  const ret = event == null ? check : check(event)
   return ret
 }
 
@@ -125,6 +127,12 @@ function parseHotkey(hotkey, options) {
   }
 
   for (let value of values) {
+    const optional = value.endsWith('?')
+
+    if (optional) {
+      value = value.slice(0, -1)
+    }
+
     const name = toKeyName(value)
     const modifier = MODIFIERS[name]
 
@@ -137,7 +145,7 @@ function parseHotkey(hotkey, options) {
     }
 
     if (modifier) {
-      ret[modifier] = true
+      ret[modifier] = optional ? null : true
     }
 
     // If there's only one key, and it's not a modifier, ignore the shift key
@@ -159,9 +167,11 @@ function compareHotkey(object, event) {
     const expected = object[key]
     let actual
 
-    if (expected == null) continue
+    if (expected == null) {
+      continue
+    }
 
-    if (key == 'key') {
+    if (key === 'key') {
       actual = event.key.toLowerCase()
     } else if (key == 'which') {
       actual = expected == 91 && event.which == 93 ? 91 : event.which
@@ -169,8 +179,13 @@ function compareHotkey(object, event) {
       actual = event[key]
     }
 
-    if (actual == null && expected == false) continue
-    if (actual != expected) return false
+    if (actual == null && expected === false) {
+      continue
+    }
+
+    if (actual !== expected) {
+      return false
+    }
   }
 
   return true

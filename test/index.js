@@ -96,6 +96,18 @@ describe('is-hotkey', () => {
       assert.equal(value, false)
     })
 
+    it('matches optional modifiers', () => {
+      const event = e(83, 'alt', 'meta')
+      const value = isHotkey('cmd+alt?+s', event)
+      assert.equal(value, true)
+    })
+
+    it('matches missing optional modifiers', () => {
+      const event = e(83, 'meta')
+      const value = isHotkey('cmd+alt?+s', event)
+      assert.equal(value, true)
+    })
+
     it('can be curried', () => {
       const event = e(83, 'meta')
       const curried = isHotkey('cmd+s')
@@ -107,6 +119,14 @@ describe('is-hotkey', () => {
       const event = { which: 13 }
       const value = isHotkey('enter', event)
       assert.equal(value, true)
+    })
+
+    it('matches multiple hotkeys', () => {
+      const check = isHotkey(['meta+a', 'meta+s'])
+      const a = check(e(65, 'meta'))
+      const s = check(e(83, 'meta'))
+      assert.equal(a, true)
+      assert.equal(s, true)
     })
   })
 
@@ -183,6 +203,18 @@ describe('is-hotkey', () => {
       assert.equal(value, false)
     })
 
+    it('matches optional modifiers', () => {
+      const event = e('s', 'alt', 'meta')
+      const value = isHotkey('cmd+alt?+s', { byKey: true }, event)
+      assert.equal(value, true)
+    })
+
+    it('matches missing optional modifiers', () => {
+      const event = e('s', 'meta')
+      const value = isHotkey('cmd+alt?+s', { byKey: true }, event)
+      assert.equal(value, true)
+    })
+
     it('can be curried', () => {
       const event = e('s', 'meta')
       const curried = isHotkey('cmd+s', { byKey: true })
@@ -194,6 +226,14 @@ describe('is-hotkey', () => {
       const event = { key: 'Enter' }
       const value = isHotkey('enter', { byKey: true }, event)
       assert.equal(value, true)
+    })
+
+    it('matches multiple hotkeys', () => {
+      const check = isHotkey(['meta+a', 'meta+s'], { byKey: true })
+      const a = check(e('a', 'meta'))
+      const s = check(e('s', 'meta'))
+      assert.equal(a, true)
+      assert.equal(s, true)
     })
   })
 
