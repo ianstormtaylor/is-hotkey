@@ -185,12 +185,6 @@ describe('is-hotkey', () => {
       assert.equal(value, true)
     })
 
-    it('matches individual keys, ignoring `shiftKey`', () => {
-      const event = e('A', 'shift')
-      const value = isHotkey('a', { byKey: true }, event)
-      assert.equal(value, true)
-    })
-
     it('does not match extra modifiers', () => {
       const event = e('s', 'alt', 'meta')
       const value = isHotkey('cmd+s', { byKey: true }, event)

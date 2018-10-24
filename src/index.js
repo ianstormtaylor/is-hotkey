@@ -136,7 +136,7 @@ function parseHotkey(hotkey, options) {
     const name = toKeyName(value)
     const modifier = MODIFIERS[name]
 
-    if (length == 1 || !modifier) {
+    if (length === 1 || !modifier) {
       if (byKey) {
         ret.key = name
       } else {
@@ -146,12 +146,6 @@ function parseHotkey(hotkey, options) {
 
     if (modifier) {
       ret[modifier] = optional ? null : true
-    }
-
-    // If there's only one key, and it's not a modifier, ignore the shift key
-    // because it will already be taken into accout by the `event.key` value.
-    if (length == 1 && !modifier && byKey) {
-      ret.shiftKey = null
     }
   }
 
@@ -173,8 +167,8 @@ function compareHotkey(object, event) {
 
     if (key === 'key') {
       actual = event.key.toLowerCase()
-    } else if (key == 'which') {
-      actual = expected == 91 && event.which == 93 ? 91 : event.which
+    } else if (key === 'which') {
+      actual = expected === 91 && event.which === 93 ? 91 : event.which
     } else {
       actual = event[key]
     }
