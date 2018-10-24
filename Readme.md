@@ -1,9 +1,9 @@
 
-# is-hotkey
+### `is-hotkey`
 
 A simple way to check whether a browser event matches a hotkey.
 
----
+<br/>
 
 ### Features
 
@@ -13,7 +13,7 @@ A simple way to check whether a browser event matches a hotkey.
 - Can be curried to reduce parsing and increase performance when needed.
 - Is very lightweight, weighing in at `< 1kb` minified and gzipped.
 
----
+<br/>
 
 ### Example
 
@@ -45,7 +45,7 @@ function onKeyDown(e) {
 
 That's it!
 
----
+<br/>
 
 ### Why?
 
@@ -57,7 +57,7 @@ But most libraries don't expose their parsing logic. And even for the ones that 
 
 So... this is a simple and lightweight hotkey checker!
 
----
+<br/>
 
 ### API
 
@@ -120,9 +120,3 @@ const passes = compareHotkey(hotkey, event)
 ```
 
 You can also go even more low-level with the exposed `parseHotkey` and `compareHotkey` functions, which are what the default `isHotkey` export uses under the covers, in case you have more advanced needs.
-
----
-
-### License
-
-This package is [MIT-licensed](./License.md).
