@@ -7,14 +7,16 @@
   "main": "./lib/index.js",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
+    "build:umd": "babel --plugins transform-es2015-modules-umd ./src -o ./lib/is-hotkey.umd.js",
     "clean": "rm -rf ./lib ./node_modules",
-    "prepublish": "yarn run build",
+    "prepublish": "yarn run build && yarn run build:umd",
     "release": "np",
     "test": "yarn run build && mocha",
     "watch": "babel ./lib --out-dir ./lib --watch"
   },
   "devDependencies": {
     "babel-cli": "^6.10.1",
+    "babel-plugin-transform-es2015-modules-umd": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "mocha": "^3.2.0"
   },
