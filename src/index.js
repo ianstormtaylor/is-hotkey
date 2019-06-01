@@ -201,6 +201,10 @@ function toKeyName(name) {
   return name
 }
 
+function getModName() {
+  return IS_MAC ? 'Cmd' : 'Ctrl'
+}
+
 /**
  * Export.
  */
@@ -215,4 +219,5 @@ export {
   compareHotkey,
   toKeyCode,
   toKeyName,
+  getModName
 }
