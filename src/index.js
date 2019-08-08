@@ -215,4 +215,5 @@ export {
   compareHotkey,
   toKeyCode,
   toKeyName,
-}
+  IS_MAC,
+};
