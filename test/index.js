@@ -107,6 +107,12 @@ describe('is-hotkey', () => {
       const value = isHotkey('cmd+alt?+s', event)
       assert.equal(value, true)
     })
+    
+    it("matches question mark key", () => {
+      const event = e("?");
+      const value = isHotkey("?", { byKey: true }, event);
+      assert.equal(value, true);
+    });
 
     it('can be curried', () => {
       const event = e(83, 'meta')
