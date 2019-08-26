@@ -1,9 +1,9 @@
 {
-  "name": "is-hotkey",
+  "name": "@aha-app/is-hotkey",
   "description": "Check whether a browser event matches a hotkey.",
-  "version": "0.1.4",
+  "version": "0.1.4a",
   "license": "MIT",
-  "repository": "git://github.com/ianstormtaylor/is-hotkey.git",
+  "repository": "git://github.com/bpaul/is-hotkey.git",
   "main": "./lib/index.js",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
