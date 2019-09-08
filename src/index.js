@@ -127,7 +127,7 @@ function parseHotkey(hotkey, options) {
   }
 
   for (let value of values) {
-    const optional = value.endsWith('?')
+    const optional = value.endsWith('?') && value.length > 1;
 
     if (optional) {
       value = value.slice(0, -1)
