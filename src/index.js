@@ -165,7 +165,7 @@ function compareHotkey(object, event) {
       continue
     }
 
-    if (key === 'key' && event.key) {
+    if (key === 'key' && event.key != null) {
       actual = event.key.toLowerCase()
     } else if (key === 'which') {
       actual = expected === 91 && event.which === 93 ? 91 : event.which
