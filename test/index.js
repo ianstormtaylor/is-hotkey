@@ -240,9 +240,10 @@ describe('is-hotkey', () => {
     })
 
     it('fails on non-modifier keys', () => {
+      const event = e('k', 'ctrl', 'alt')
       assert.throws(
         () => {
-          isHotkey('ctrlalt+k')
+          isHotkey('ctrlalt+k', { byKey: true }, event)
         },
         (err) => err instanceof TypeError && err.message === 'Unknown modifier: "ctrlalt"'
       )
