@@ -1,7 +1,7 @@
 
 ### `is-hotkey`
 
-A simple way to check whether a browser event matches a hotkey.
+A simple way to check whether a browser event matches a Hotkey.
 
 <br/>
 
@@ -96,7 +96,7 @@ isCodeHotkey('mod+s', event)
 isKeyHotkey('mod+s', event)
 ```
 
-By default the hotkey string is checked using `event.which`. But you can also pass in `byKey: true` to compare using the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API, which stays the same regardless of keyboard layout.
+By default the hotkey string is checked using `event.which`. But you can also pass in `byKey: true` to compare using the [`KeyboardEvent.key`](https://www.developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API, which stays the same regardless of keyboard layout.
 
 Or to reduce the noise if you are defining lots of hotkeys, you can use the `isCodeHotkey` and `isKeyHotkey` helpers that are exported.
 
