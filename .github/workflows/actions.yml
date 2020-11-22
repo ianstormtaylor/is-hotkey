@@ -1,0 +1,11 @@
+name: actions
+on: [push, pull_request]
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+      - run: yarn && yarn build && yarn test && yarn lint
+        env:
+          CI: true
