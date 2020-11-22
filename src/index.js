@@ -136,6 +136,10 @@ function parseHotkey(hotkey, options) {
     const name = toKeyName(value)
     const modifier = MODIFIERS[name]
 
+    if (value.length > 1 && !modifier && !ALIASES[value] && !CODES[name]) {
+      throw new TypeError(`Unknown modifier: "${value}"`)
+    }
+
     if (length === 1 || !modifier) {
       if (byKey) {
         ret.key = name
