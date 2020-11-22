@@ -1,7 +1,7 @@
 
 ### `is-hotkey`
 
-A simple way to check whether a browser event matches a Hotkey.
+A simple way to check whether a browser event matches a hotkey.
 
 <br/>
 
