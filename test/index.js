@@ -134,6 +134,15 @@ describe('is-hotkey', () => {
       assert.equal(a, true)
       assert.equal(s, true)
     })
+
+    it('fails on non-modifier keys', () => {
+      assert.throws(
+        () => {
+          isHotkey('ctrlalt+k')
+        },
+        (err) => err instanceof TypeError && err.message === 'Unknown modifier: "ctrlalt"'
+      )
+    })
   })
 
   describe('byKey', () => {
@@ -234,6 +243,16 @@ describe('is-hotkey', () => {
       const s = check(e('s', 'meta'))
       assert.equal(a, true)
       assert.equal(s, true)
+    })
+
+    it('fails on non-modifier keys', () => {
+      const event = e('k', 'ctrl', 'alt')
+      assert.throws(
+        () => {
+          isHotkey('ctrlalt+k', { byKey: true }, event)
+        },
+        (err) => err instanceof TypeError && err.message === 'Unknown modifier: "ctrlalt"'
+      )
     })
   })
 
