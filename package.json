@@ -1,7 +1,7 @@
 {
   "name": "is-hotkey",
   "description": "Check whether a browser event matches a hotkey.",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "license": "MIT",
   "repository": "git://github.com/ianstormtaylor/is-hotkey.git",
   "main": "./lib/index.js",
