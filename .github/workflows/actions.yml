@@ -6,6 +6,6 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
-      - run: yarn && yarn build && yarn test && yarn lint
+      - run: yarn && yarn build && yarn test
         env:
           CI: true
