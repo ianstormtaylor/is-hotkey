@@ -77,8 +77,8 @@ You can either pass `hotkey, [options], event` in which case the hotkey will be 
 isHotkey('mod+a')
 isHotkey('Control+S')
 isHotkey('cmd+opt+d')
-itHotkey('Meta+DownArrow')
-itHotkey('cmd+down')
+isHotkey('Meta+DownArrow')
+isHotkey('cmd+down')
 ```
 
 The API is case-insentive, and has all of the conveniences you'd expect—`cmd` vs. `Meta`, `opt` vs. `Alt`, `down` vs. `DownArrow`, etc. 
