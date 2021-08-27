@@ -43,6 +43,33 @@ function onKeyDown(e) {
 }
 ```
 
+For multiple keys, you can pass an array instead:
+
+```js
+
+import isHotkey from 'is-hotkey'
+
+function onKeyDown(e) {
+  if (isHotkey(['delete', 'backspace'], e)) {
+    ...
+  }
+}
+```
+
+You can also use optional modifiers by adding `?` at the end of them.
+For instance, here `isHotKey` will return `true` for both: `mod+shift+left` and `shift+left`:
+
+```js
+
+import isHotkey from 'is-hotkey'
+
+function onKeyDown(e) {
+  if (isHotkey('mod?+shift+left', e)) {
+    ...
+  }
+}
+```
+
 That's it!
 
 <br/>
