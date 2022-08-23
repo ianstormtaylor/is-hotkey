@@ -245,4 +245,6 @@ export {
   compareHotkey,
   toKeyCode,
   toKeyName,
+  getHotkeyName,
+  toHotkeyName,
 }

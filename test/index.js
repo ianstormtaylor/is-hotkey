@@ -257,3 +257,7 @@ describe('is-hotkey', () => {
   })
 
 })
+
+describe('getHotkeyName', () => {
+  
+})
