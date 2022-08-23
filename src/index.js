@@ -108,6 +108,22 @@ function isKeyHotkey(hotkey, event) {
   return isHotkey(hotkey, { byKey: true }, event)
 }
 
+/*
+* Get hotkey.
+*/
+
+function getHotkeyName(event) {
+  const eventHotkey = {
+    altKey: event.altKey,
+    ctrlKey: event.ctrlKey,
+    metaKey: event.metaKey,
+    shiftKey: event.shiftKey,
+    key: event.key
+  };
+
+  return toHotkeyName(eventHotkey);
+}
+
 /**
  * Parse.
  */
@@ -204,6 +220,16 @@ function toKeyName(name) {
   name = ALIASES[name] || name
   return name
 }
+
+function toHotkeyName(hotkey) {
+  const name = [];
+  if (hotkey.ctrlKey || hotkey.metaKey) name.push("mod");
+  if (hotkey.shiftKey) name.push("shift");
+  if (hotkey.altKey) name.push("alt");
+  name.push();
+  return name.join("+");
+}
+
 
 /**
  * Export.
