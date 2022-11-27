@@ -273,10 +273,4 @@ describe('get a event\'s hotkey key', () => {
     assert.equal(hotkeyName, 'd');
   })
 
-  it('returns the correct hotkey name when only using modifiers', () => {
-    const event = e('ctrl', 'alt');
-    const hotkeyName = getHotkeyName(event);
-    assert.equal(hotkeyName, 'mod+alt');
-  })
-  
 })
