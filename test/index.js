@@ -1,6 +1,7 @@
 
 const isHotkey = require('..').default
 const assert = require('assert')
+const { getHotkeyName } = require('../src')
 
 /**
  * Utils
@@ -258,6 +259,24 @@ describe('is-hotkey', () => {
 
 })
 
-describe('getHotkeyName', () => {
+describe('get a event\'s hotkey key', () => {
+
+  it('returns the correct hotkey name when using modifiers', () => {
+    const event = e('ctrl', 'alt', 'e');
+    const hotkeyName = getHotkeyName(event);
+    assert.equal(hotkeyName, 'mod+alt+e');
+  })
+
+  it('returns the correct hotkey name when not using modifiers', () => {
+    const event = e('d');
+    const hotkeyName = getHotkeyName(event);
+    assert.equal(hotkeyName, 'd');
+  })
+
+  it('returns the correct hotkey name when only using modifiers', () => {
+    const event = e('ctrl', 'alt');
+    const hotkeyName = getHotkeyName(event);
+    assert.equal(hotkeyName, 'mod+alt');
+  })
   
 })
