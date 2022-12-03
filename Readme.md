@@ -9,6 +9,7 @@ A simple way to check whether a browser event matches a hotkey.
 
 - Uses a simple, natural syntax for expressing hotkeys—`mod+s`, `cmd+alt+space`, etc.
 - Accepts `mod` for the classic "`cmd` on Mac, `ctrl` on Windows" use case.
+- Can be used using `switch`.
 - Can use either `event.which` (default) or `event.key` to work regardless of keyboard layout.
 - Can be curried to reduce parsing and increase performance when needed.
 - Is very lightweight, weighing in at `< 1kb` minified and gzipped.
@@ -40,6 +41,21 @@ function onKeyDown(e) {
   if (isSaveHotkey(e)) {
     ...
   }
+}
+```
+
+It is also possible to use it using a switch statment by converting the event to a hotkey:
+
+```js
+switch (getHotkeyName(event)) {
+  case "mod+s":
+    event.preventDefault();
+    console.log("Save");
+    break;
+  case "mod+c":
+    event.preventDefault();
+    console.log("Copy");
+    break;
 }
 ```
 
@@ -126,6 +142,13 @@ isKeyHotkey('mod+s', event)
 By default the hotkey string is checked using `event.which`. But you can also pass in `byKey: true` to compare using the [`KeyboardEvent.key`](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) API, which stays the same regardless of keyboard layout.
 
 Or to reduce the noise if you are defining lots of hotkeys, you can use the `isCodeHotkey` and `isKeyHotkey` helpers that are exported.
+
+```js
+// Event: ctrl + s
+const hotkeyName = getHotkeyName(event); // "mod+s"
+```
+
+You can get the hotkey name of an event using the `getHotkeyName` function, in case you would want to use a switch statement for example.
 
 ```js
 import { toKeyName, toKeyCode } from 'is-hotkey'
