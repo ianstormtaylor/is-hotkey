@@ -108,7 +108,7 @@ isHotkey('Meta+DownArrow')
 isHotkey('cmd+down')
 ```
 
-The API is case-insentive, and has all of the conveniences you'd expect—`cmd` vs. `Meta`, `opt` vs. `Alt`, `down` vs. `DownArrow`, etc. 
+The API is case-insensitive, and has all of the conveniences you'd expect—`cmd` vs. `Meta`, `opt` vs. `Alt`, `down` vs. `DownArrow`, etc. 
 
 It also accepts `mod` for the classic "`cmd` on Mac, `ctrl` on Windows" use case.
 
