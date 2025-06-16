@@ -104,11 +104,11 @@ You can either pass `hotkey, [options], event` in which case the hotkey will be 
 isHotkey('mod+a')
 isHotkey('Control+S')
 isHotkey('cmd+opt+d')
-isHotkey('Meta+DownArrow')
+isHotkey('Meta+ArrowDown')
 isHotkey('cmd+down')
 ```
 
-The API is case-insensitive, and has all of the conveniences you'd expect—`cmd` vs. `Meta`, `opt` vs. `Alt`, `down` vs. `DownArrow`, etc. 
+The API is case-insensitive, and has all of the conveniences you'd expect—`cmd` vs. `Meta`, `opt` vs. `Alt`, `down` vs. `ArrowDown`, etc. 
 
 It also accepts `mod` for the classic "`cmd` on Mac, `ctrl` on Windows" use case.
 
