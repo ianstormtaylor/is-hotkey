@@ -1,5 +1,5 @@
 
-const isHotkey = require('..').default
+const { default: isHotkey, getHotkeyName } = require('..')
 const assert = require('assert')
 
 /**
@@ -256,4 +256,32 @@ describe('is-hotkey', () => {
     })
   })
 
+  describe('getHotkeyName', () => {
+    it('matches correct hotkey name with modifiers', () => {
+      const event = e('c', 'ctrl');
+      const hotkeyName = getHotkeyName(event);
+      assert.equal(hotkeyName, 'mod+c');
+    })
+  
+    it('matches correct hotkey name without modifiers', () => {
+      const event = e('d');
+      const hotkeyName = getHotkeyName(event);
+      assert.equal(hotkeyName, 'd');
+    })
+
+    it('matches individual modifiers', () => {
+      const individualModifiers = [
+        ['Shift', 'shift', 'shift'],
+        ['Control', 'ctrl', 'mod'],
+        ['Alt', 'alt', 'alt'],
+        ['Meta', 'meta', 'meta']
+      ];
+      for(const individualModifier of individualModifiers) {
+        const [key, modifier, output] = individualModifier;
+        const event = e(key, modifier)
+        const hotkeyName = getHotkeyName(event);
+        assert.equal(hotkeyName, output)
+      }
+    })
+  })
 })
