@@ -24,6 +24,11 @@ function e(value, ...modifiers) {
 describe('is-hotkey', () => {
 
   describe('byCode', () => {
+    it('matches an event passed after an empty options object', () => {
+      assert.equal(isHotkey('ctrl+s', {}, e(83, 'ctrl')), true)
+      assert.equal(isHotkey('ctrl+s', {}, e(65, 'ctrl')), false)
+    })
+
     it('matches one modifier', () => {
       const event = e(83, 'meta')
       const value = isHotkey('Meta+S', event)
