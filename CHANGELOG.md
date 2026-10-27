@@ -4,4 +4,4 @@
 
 ### Patch Changes
 
-- [`745d340`](https://github.com/ianstormtaylor/is-hotkey/commit/745d3403ff44f7fa5d6fb18b978d2aa734ad977b) Thanks [@12joan](https://github.com/12joan)! - Use the correct overload when an empty options object is passed (e.g. `isHotkey('ctrl+s', {}, event)`)
+- [#63](https://github.com/ianstormtaylor/is-hotkey/pull/63) [`1b217bf`](https://github.com/ianstormtaylor/is-hotkey/pull/63/commits/1b217bfdcea6037fd658012e914c174f1f9341a9) Thanks [@feritcemkahraman](https://github.com/feritcemkahraman)! - Use the correct overload when an empty options object is passed (e.g. `isHotkey('ctrl+s', {}, event)`)
