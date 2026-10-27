@@ -64,40 +64,9 @@ jobs:
         id: version
         uses: changesets/action/version@v2
 
-  pack:
+  publish:
     if: needs.select-mode.outputs.mode == 'publish'
     needs: select-mode
-    runs-on: ubuntu-latest
-    outputs:
-      pack-dir-artifact-id: ${{ steps.pack.outputs.pack-dir-artifact-id }}
-    permissions:
-      contents: read
-    steps:
-      - name: Check out repo
-        uses: actions/checkout@v7
-        with:
-          persist-credentials: false
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v7
-        with:
-          node-version: 24
-          package-manager-cache: false
-
-      - name: Install dependencies
-        run: corepack enable && yarn install
-
-      - name: Build packages
-        run: yarn prerelease
-
-      - name: Pack packages
-        id: pack
-        uses: changesets/action/pack@v2
-        with:
-          publish-plan-artifact-id: ${{ needs.select-mode.outputs.publish-plan-artifact-id }}
-
-  publish:
-    needs: pack
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -117,7 +86,8 @@ jobs:
       - name: Install dependencies
         run: corepack enable && yarn install
 
+      - name: Build packages
+        run: yarn prerelease
+
       - name: Publish packages
         uses: changesets/action/publish@v2
-        with:
-          pack-dir-artifact-id: ${{ needs.pack.outputs.pack-dir-artifact-id }}
