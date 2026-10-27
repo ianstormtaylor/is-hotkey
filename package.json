@@ -34,5 +34,6 @@
     "mousetrap",
     "shortcut",
     "which"
-  ]
+  ],
+  "packageManager": "yarn@4.18.1"
 }
