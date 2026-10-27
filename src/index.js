@@ -85,7 +85,7 @@ for (var f = 1; f < 20; f++) {
  */
 
 function isHotkey(hotkey, options, event) {
-  if (options && !('byKey' in options)) {
+  if (event == null && options && !('byKey' in options)) {
     event = options
     options = null
   }
