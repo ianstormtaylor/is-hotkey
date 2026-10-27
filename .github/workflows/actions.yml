@@ -1,11 +1,22 @@
-name: actions
-on: [push, pull_request]
+name: CI
+
+on: push
+
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
-      - run: yarn && yarn build && yarn test
+      - name: Check out repo
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: 24
+
+      - name: Build and test
+        run: yarn && yarn build && yarn test
         env:
           CI: true
