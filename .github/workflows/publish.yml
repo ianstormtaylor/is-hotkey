@@ -30,7 +30,7 @@ jobs:
           node-version: 24
 
       - name: Install dependencies
-        run: yarn install
+        run: corepack enable && yarn install
 
       - name: Select Changesets mode
         id: select-mode
@@ -58,7 +58,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install dependencies
-        run: yarn install
+        run: corepack enable && yarn install
 
       - name: Version packages
         id: version
@@ -85,7 +85,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install dependencies
-        run: yarn install
+        run: corepack enable && yarn install
 
       - name: Build packages
         run: yarn prerelease
@@ -115,7 +115,7 @@ jobs:
           package-manager-cache: false
 
       - name: Install dependencies
-        run: yarn install
+        run: corepack enable && yarn install
 
       - name: Publish packages
         uses: changesets/action/publish@v2
