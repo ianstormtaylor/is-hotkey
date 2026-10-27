@@ -16,7 +16,10 @@ jobs:
         with:
           node-version: 24
 
+      - name: Install dependencies
+        run: corepack enable && yarn install
+
       - name: Build and test
-        run: yarn && yarn build && yarn test
+        run: yarn build && yarn test
         env:
           CI: true
